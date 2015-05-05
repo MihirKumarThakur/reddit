@@ -1,0 +1,55 @@
+<!-- passing the current user to the apppication js file and check when clicking the vote up and vote down --> 
+
+
+<%= javascript_tag do %>
+	<% if current_user %>
+  		window.current_user_name = '<%= j current_user.name %> ';
+  	<% else %>
+  		window.current_user_name = '<%= j nil %>'
+  	<% end %>
+<% end %>
+
+<div id = "post_content" >
+	<h3>Post</h3>
+	Title: <%= @post.title %> <br>
+	Content: <%= @post.content %><br>
+	 <%= content_tag "div", id: "post_vote_value_section", data: {postid: @post.id} do %>
+			<span id="post_vote_value"> <%= @post_vote_value %> </span><br>
+			 <div class: "post_votes_section"> 
+				<% if @vote_value == true %>
+					
+					<span id = "span_true">
+						<%= link_to("Vote Up",'#', class: "post_vote", id: "post_vote_up", value: true, style: 'background-color:silver;') %>
+						<%= link_to "Vote Down","#",  class: "post_vote", id: "post_vote_down", value: false%>
+					
+				<% elsif @vote_value == false %>
+									
+						<%= link_to "Vote Up","#", class: "post_vote", id: "post_vote_up",value: true %>    
+						<%= link_to("Vote Down",'#', class: "post_vote", id: "post_vote_down", value: false, style: 'background-color:silver;') %>
+				
+				<% else %>
+						<%= link_to "Vote Up","#", class: "post_vote", id: "post_vote_up",value: true %>    
+						<%= link_to "Vote Down","#",  class: "post_vote", id: "post_vote_down", value: false%>
+				<% end %>
+				</span>
+			</div>
+	<% end %> 
+</div>
+
+	 <div class ="comments_content">
+		<h3>Comments</h3>
+		<%=  render @comments %>
+	</div> 
+
+<% if current_user %>
+	<div id="comment_create_section">
+		<h3>Post a Comment</h3>
+		<%= form_for [@post,@post.comments.new], class: "create_comment", remote: true do |f| %>
+		<p>
+		<%= f.label :comment_content, "New comment" %><br/>
+		<%= f.text_area :comment_content, id: "comment_text_area" %>
+		</p>
+		<p><%= f.submit "Add comment", class: "comment_submit" %></p> 
+		<% end %>
+	</div>
+<% end %>	

@@ -1,0 +1,21 @@
+<h2 align="Center"><%= link_to "Create Post", new_post_path, remote: true, :id => "create_post" %></h2>
+
+<div id="new_post"></div> 
+
+
+<table class="gridtable" align="center" cellspacing="30" id="post_table">
+
+		<tr>
+			<th>Title</th>
+			<th>Content</th>
+			<th>Edit</th>
+			<th>Delete</th>
+			<th>Show</th>
+		</tr>
+
+		
+			<%= render @posts %>
+		
+
+
+</table>

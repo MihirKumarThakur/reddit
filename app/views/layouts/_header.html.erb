@@ -1,0 +1,11 @@
+<%= link_to "HOME", root_path %>
+<% if current_user %>
+	Your Name: <%= current_user.name %><br>
+	Check Your Profile: <%= link_to "PROFILE", posts_path %>
+	<%= link_to "LOGOUT", logout_path %>
+	
+<% else %>
+	<strong>Hello Guest!</strong>
+	<%= link_to "LOGIN", login_path %><br>
+	<%= link_to "Create New Account" , signup_path %>
+<% end %>

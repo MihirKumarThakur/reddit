@@ -1,0 +1,19 @@
+<h2 align="center">Posts Created by All Users</h2>
+
+<%#= render 'posts/post_list' %>
+
+
+<table class="gridtable" align="center" cellspacing="30">
+		<tr>
+			<th>Title</th>
+			<th>Content</th>
+			<th>Show</th>
+		</tr>
+		<% @posts.each do |post| %>
+		<tr>
+			<td><%= post.title %></td>
+			<td><%= post.content %></td>
+			<td><%= link_to "Show", post_path(post) %></td>
+		<% end %>
+
+</table>

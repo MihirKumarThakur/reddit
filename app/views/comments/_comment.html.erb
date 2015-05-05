@@ -1,0 +1,15 @@
+<li id="tr_<%= comment.id%>" > 
+		<%= User.where(id: comment.user_id).first.name  %> Commented 
+		<span class="date"><%= time_ago_in_words(comment.created_at)%> ago </span>
+      <p> <%=comment.comment_content %> </p>
+	<span id="comment_vote_value_<%= comment.id %>" > <%= comment_vote_count( comment.id ) %> </span><br>
+
+	 	<div class: "comment_votes_section"> 
+			 <span>
+				 <%= link_to("Vote Up",'#', class:  comment.id.to_s + " " + "comment_vote" , id: "comment_vote_up", value: true) %>
+				<%= link_to "Vote Down","#",  class: comment.id.to_s + " " + "comment_vote", id: "comment_vote_down", value: false%>
+			</span>
+		</div>
+
+</li>
+

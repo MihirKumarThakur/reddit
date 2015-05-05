@@ -1,0 +1,12 @@
+<tr id="tr_<%= post.id%>">
+    <%= form_for post, remote: true do |f|%>
+      <td><%=post.title %></td>
+      <td><%=post.content %></td>
+      <td><%= link_to "EDIT", edit_post_path(post), remote: true, class: 'edit_post' %></td>
+	<td><%= link_to "DESTROY", post_path(post), remote: true, 
+					class: 'delete_post', 
+					method: :delete, 
+					data: { confirm: 'Are you Sure'} %></td>
+	<td><%= link_to "Show", post_path(post) %></td>
+    <% end %>
+</tr>
